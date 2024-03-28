@@ -1,0 +1,36 @@
+{
+  "name": "calendar-tasks-backend",
+  "version": "1.0.0",
+  "description": "Backend for the react calendar app",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "build": "npx tsc",
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuanDa15/calendar-app-backend.git"
+  },
+  "keywords": [
+    "expressJS",
+    "javascript",
+    "typescript",
+    "backend"
+  ],
+  "author": "juan david osorio ortiz <JuanDa15>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuanDa15/calendar-app-backend/issues"
+  },
+  "homepage": "https://github.com/JuanDa15/calendar-app-backend#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.2.3"
+  }
+}
