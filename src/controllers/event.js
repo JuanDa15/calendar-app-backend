@@ -1,6 +1,6 @@
 const {response, request} = require('express');
 
-const CalendarEvent = require('../models/event');
+const CalendarEvent = require('../models/Event');
 const {serverError} = require('../utils/server-error');
 const httpResponse = require('../utils/httpResponse');
 
