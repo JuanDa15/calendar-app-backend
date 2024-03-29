@@ -2,7 +2,7 @@ const { request } = require('express');
 const { verify } = require('jsonwebtoken');
 
 const validateJWT = (req = request, res, next) => {
-  const [_, token] = req.header('authorization').split(' ');
+  const [_, token] = (req.header('authorization') ?? '').split(' ');
 
   if (!token) {
     return res.status(401).json({

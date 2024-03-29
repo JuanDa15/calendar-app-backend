@@ -19,7 +19,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/v1/auth/', require('./routes/auth.js'));
-
+app.use('/api/v1/event/', require('./routes/event.js'));
 // listen request
 app.listen(process.env.PORT || 3000, () => {
   console.log(`Server running in port: ${process.env.PORT || 3000}`);

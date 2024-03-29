@@ -3,6 +3,7 @@ const User = require('../models/User');
 const { genSaltSync, hashSync, compareSync } = require('bcryptjs');
 const { serverError } = require('../utils/server-error');
 const { generateJWT } = require('../utils/jwt');
+const httpResponse = require('../utils/httpResponse');
 
 const login = async (req = request, res = response) => {
   const { email, password } = req.body;
@@ -11,28 +12,22 @@ const login = async (req = request, res = response) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(404).json({
-        ok: false,
-        msg: 'Email is not registered',
-      });
+      return res
+        .status(404)
+        .json(httpResponse(false, 'Email is not registered'));
     }
 
     const isValidPassword = compareSync(password, user.password);
 
     if (!isValidPassword) {
-      return res.status(401).json({
-        ok: false,
-        msg: 'Email or password invalid',
-      });
+      return res
+        .status(401)
+        .json(httpResponse(false, 'Email or password invalid'));
     }
 
     const token = await generateJWT(user.id);
 
-    res.json({
-      ok: true,
-      msg: 'Login success',
-      data: { ...user.toJSON(), token },
-    });
+    res.json(httpResponse(true, 'Login success', { ...user.toJSON(), token }));
   } catch (error) {
     serverError(error, res);
   }
@@ -45,10 +40,9 @@ const register = async (req = request, res = response) => {
     const isEmailUsed = await User.findOne({ email });
 
     if (isEmailUsed) {
-      return res.status(409).json({
-        ok: false,
-        msg: 'Email is already registered',
-      });
+      return res
+        .status(409)
+        .json(httpResponse(false, 'Email is already registered'));
     }
 
     const user = new User({ name, email, password });
@@ -58,10 +52,7 @@ const register = async (req = request, res = response) => {
 
     await user.save();
 
-    res.status(201).json({
-      ok: true,
-      msg: 'User created',
-    });
+    res.status(201).json(httpResponse(true, 'User created'));
   } catch (error) {
     serverError(error, res);
   }
@@ -70,11 +61,7 @@ const register = async (req = request, res = response) => {
 const renew = async (req, res) => {
   const token = await generateJWT(req.uid);
 
-  res.json({
-    ok: true,
-    msg: 'Token renewed',
-    data: token,
-  });
+  res.status(200).json(httpResponse(true, 'Token renewed', token));
 };
 
 module.exports = {
