@@ -24,3 +24,5 @@ app.use('/api/v1/event/', require('./routes/event.js'));
 app.listen(process.env.PORT || 3000, () => {
   console.log(`Server running in port: ${process.env.PORT || 3000}`);
 });
+
+module.exports = app;
