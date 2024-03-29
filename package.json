@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node --watch src/index.js",
     "test": "npm run test",
-    "build": "npm build",
+    "build": "webpack",
     "eslint": "eslint ./",
     "eslint-fix": "eslint ./ --fix"
   },
@@ -37,6 +37,8 @@
   },
   "devDependencies": {
     "eslint": "^8.57.0",
-    "eslint-config-google": "^0.14.0"
+    "eslint-config-google": "^0.14.0",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
   }
 }
