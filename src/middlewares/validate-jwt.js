@@ -1,5 +1,5 @@
-const { request } = require('express');
-const { verify } = require('jsonwebtoken');
+const {request} = require('express');
+const {verify} = require('jsonwebtoken');
 
 const validateJWT = (req = request, res, next) => {
   const [_, token] = (req.header('authorization') ?? '').split(' ');
@@ -12,7 +12,7 @@ const validateJWT = (req = request, res, next) => {
   }
 
   try {
-    const { uid } = verify(token, process.env.JWT_SECRET);
+    const {uid} = verify(token, process.env.JWT_SECRET);
 
     req.uid = uid;
 
