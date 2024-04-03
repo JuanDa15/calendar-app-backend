@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { dbConnection } = require('./db/config.js');
+const {dbConnection} = require('./db/config.js');
 require('dotenv').config();
 
 // Create express server
@@ -24,5 +24,3 @@ app.use('/api/v1/event/', require('./routes/event.js'));
 app.listen(process.env.PORT || 3000, () => {
   console.log(`Server running in port: ${process.env.PORT || 3000}`);
 });
-
-module.exports = app;

@@ -17,6 +17,10 @@ const EventSchema = Schema(
         type: Date,
         required: true,
       },
+      bgColor: {
+        type: String,
+        required: true,
+      },
       user: {
         type: Schema.Types.ObjectId,
         ref: 'User',

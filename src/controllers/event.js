@@ -6,7 +6,10 @@ const httpResponse = require('../utils/httpResponse');
 
 const getEvents = async (req, res = response) => {
   try {
-    const events = await CalendarEvent.find().populate('user', '_id name');
+    const events = await CalendarEvent.find({user: req.uid}).populate(
+        'user',
+        '_id name',
+    );
     res.json(
         httpResponse(true, 'Events list', {
           count: events.length,

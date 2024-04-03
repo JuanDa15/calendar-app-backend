@@ -61,7 +61,19 @@ const register = async (req = request, res = response) => {
 const renew = async (req, res) => {
   const token = await generateJWT(req.uid);
 
-  res.status(200).json(httpResponse(true, 'Token renewed', token));
+  try {
+    const user = await User.findById(req.uid);
+
+    if (!user) {
+      return res.status(404).json(httpResponse(false, 'User not found'));
+    }
+
+    res
+        .status(200)
+        .json(httpResponse(true, 'Token renewed', {token, ...user.toJSON()}));
+  } catch (error) {
+    serverError(error, res);
+  }
 };
 
 module.exports = {

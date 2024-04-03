@@ -7,7 +7,7 @@ const {isValid} = require('date-fns');
  */
 function isDate(value) {
   if (value === null || value === undefined) return false;
-  return isValid(value);
+  return isValid(new Date(value));
 }
 
 module.exports = {isDate};
