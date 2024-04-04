@@ -21,7 +21,9 @@ app.use(express.json());
 app.use('/api/v1/auth/', require('./routes/auth.js'));
 app.use('/api/v1/event/', require('./routes/event.js'));
 
-// app.get('*', (req, res) => { res.sendFile(__dirname+'/public/index.html')})
+app.get('*', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
 // listen request
 app.listen(process.env.PORT || 3000, () => {
   console.log(`Server running in port: ${process.env.PORT || 3000}`);
